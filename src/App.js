@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import Layout from './components/Layout/Layout';
+import Feed from './components/Feed/Feed';
+import UserProfile from './components/UserProfile/UserProfile';
+
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Layout>
+        <Switch>
+          <Route path="/" exact>
+            <Redirect to="/feed" />
+          </Route>
+          <Route path="/feed" component={Feed} exact />
+          <Route path="/feed/:sport" component={Feed} exact />
+          <Route path="/profile" component={UserProfile} exact></Route>
+        </Switch>
+      </Layout>
     </div>
   );
 }
